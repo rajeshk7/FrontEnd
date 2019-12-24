@@ -1,29 +1,34 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom';
 
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export class Navbar extends Component {
-    static defaultProps = {
-      title: 'Github Finder'
-      //Whatever we pass as props or assign will overwrite it
-    };
+const Navbar = ({title}) => {
+    return (
+      <nav className = "nnavbar bg-primary" >
+        <h1>
+        <FontAwesomeIcon icon={faHome} /> {title}
+        </h1>
+        <ul>
+          <li>
+            <Link to="/" > Home </Link>
+          </li>
+          <li>
+            <Link to="/about"> About </Link>
+          </li>
+        </ul>
+      </nav>
+    );
+};
 
-    static propTypes = {
-      title: PropTypes.string.isRequired
-      //It will always expect the title to be of string type 
-    };
+Navbar.defaultProps = {
+  title: 'Github Finder'
+};
 
-    render()  {
-      return (
-        <nav className = "nnavbar bg-primary" >
-          <h1>
-          <FontAwesomeIcon icon={faHome} /> {this.props.title}
-          </h1>
-        </nav>
-      );
-  }
-}
+Navbar.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
 export default Navbar;
